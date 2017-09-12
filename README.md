@@ -1,3 +1,11 @@
+#Intro to RxJava exercises and code kata
+
+This is my fork for the 'Intro to RxJava repo, which can be found under this link: [[CLICK]](/https://github.com/Froussios/Intro-To-RxJava)'
+
+It will be a place where I will try various stuff from the tutorial.
+
+
+
 # Intro to RxJava
 
 This guide aims to introduce a beginner reactive programmer to the complete power of the [RxJava](https://github.com/ReactiveX/RxJava) implementation of reactive programming for the JVM. It is based on the [IntroToRx](http://www.introtorx.com) guide for Rx.NET.
