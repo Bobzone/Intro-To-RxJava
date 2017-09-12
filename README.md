@@ -1,4 +1,4 @@
-#Intro to RxJava exercises and code kata
+# Intro to RxJava exercises and code kata
 
 This is my fork for the 'Intro to RxJava repo, which can be found under this link: [[CLICK]](/https://github.com/Froussios/Intro-To-RxJava)'
 
