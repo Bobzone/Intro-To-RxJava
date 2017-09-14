@@ -1,7 +1,10 @@
 package main
 
 import rx.Observable
+import rx.Subscription
 import spock.lang.Specification
+
+import java.util.concurrent.TimeUnit
 
 
 class BasicObservableTest extends Specification {
@@ -50,4 +53,43 @@ class BasicObservableTest extends Specification {
         then:
         defer != null
     }
+
+    def "Supply a Subscriber to create"() {
+        when:
+        Observable<String> values = Observable.create { o ->
+            o.onNext("Hello");
+            o.onCompleted();
+        }
+        values.subscribe(
+                { v -> println "onNext: " + v },
+                { e -> println "onError: " + e },
+                { println "Completed" }
+        )
+        then:
+        values != null
+    }
+
+    def "Emit specified range of integers"() {
+        when:
+        Observable<Integer> numbers = Observable.range(1, 15)
+        numbers.subscribe { v -> println v }
+
+        then:
+        numbers != null
+    }
+
+    def "timer() usage example"() {
+        when:
+        Observable<Long> values = Observable.timer(2, 1, TimeUnit.SECONDS);
+        Subscription subscription = values.subscribe(
+                { v -> System.out.println("Received: " + v) },
+                { e -> System.out.println("Error: " + e) },
+                { System.out.println("Completed") }
+        )
+        System.in.read();
+
+        then:
+        values != null
+    }
+
 }
