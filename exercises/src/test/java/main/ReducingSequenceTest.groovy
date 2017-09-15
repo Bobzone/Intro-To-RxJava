@@ -4,6 +4,8 @@ import rx.Observable
 import rx.Subscription
 import spock.lang.Specification
 
+import java.util.concurrent.TimeUnit
+
 
 class ReducingSequenceTest extends Specification {
 
@@ -77,6 +79,30 @@ class ReducingSequenceTest extends Specification {
 
         then:
         //expecting a, b, aa, bb
+        obs != null
+    }
+
+    def "takeWhile tests"() {
+        when:
+        Observable<Integer> obs = Observable
+                .create { o ->
+            o.onNext(1);
+            o.onNext(1);
+            o.onNext(2);
+            o.onNext(3);
+            o.onNext(2);
+            o.onCompleted();
+        }
+
+        Subscription subscription = obs
+                .takeWhile { v -> v < 2 }
+                .subscribe(
+                { v -> println "Emited: " + v },
+                { e -> println "Error: " + e },
+                { println "onCompleted " }
+        )
+
+        then:
         obs != null
     }
 }
